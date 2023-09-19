@@ -1,18 +1,19 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 export default function Book({ book }) {
   return (
     <div className="book">
-                        <a href="">
+                        <Link to={book.id}>
                             <figure className="book__img--wrapper">
                                 <img src={book.url} alt="" />
                             </figure>
-                        </a>
+                        </Link>
                         <div className="book__title">
-                            <a href="" className='book__title--link'> 
+                            <Link to={book.id} className='book__title--link'> 
                                {book.title}
-                            </a>
+                            </Link>
                         </div>
                         <div className="book__ratings">
                             {
@@ -24,12 +25,12 @@ export default function Book({ book }) {
                         <div className="book__price"> 
                         { book.salePrice ? (
                             <>
-                            <span className="book__price--normal"> $ {book.originalPrice}</span>
-                           $ {book.salePrice}
+                            <span className="book__price--normal"> ${book.originalPrice}</span>
+                           ${book.salePrice}
                             </>
                         ) : (
                            <>
-                           {book.originalPrice}
+                           ${book.originalPrice}
                            </> 
                         )}
                         </div>
