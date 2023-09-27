@@ -1,16 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react';
 import LibraryLogo from '../assets/Library.svg'
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function Nav() {
+
+function Nav({ cartCounter }) {
     function openMenu() {
         document.body.classList += " menu--open";
     }
     function removeMenu() {
         document.body.classList.remove("menu--open");
     }
-
+    
     return  (
         <nav>
             <div className="nav__container">
@@ -31,7 +32,14 @@ function Nav() {
                         <Link to="/cart" className="nav__link"> 
                             <FontAwesomeIcon icon="shopping-cart" />
                         </Link>
-                        <span className="cart__length"> 2 </span>
+                        {
+                            cartCounter !== 0 ? (
+                                <span className="cart__length"> {cartCounter} </span>
+                            ) : (
+                                <div className=""></div>
+                            )
+                        }
+                        
                     </li>
                 </ul>
                 <div className="menu__backdrop">

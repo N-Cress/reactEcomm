@@ -29,6 +29,16 @@ function App() {
   checkCart(cart)
   console.log(isCart)
 
+let cartCounter = 0;
+
+function numItems() {
+  cart.forEach(item => {
+    cartCounter += item.quantity;
+  })
+}
+
+numItems()
+
 function changeQuantity(book, quantity) {
     setCart(cart.map(item => {
       if (item.id === book.id) {
@@ -65,7 +75,7 @@ function changeQuantity(book, quantity) {
 
   return (
     <Router>
-      <Nav />
+      <Nav cartCounter={cartCounter} />
       <Routes>
         <Route path="/" exact element={<Home books={books}/>} />
         <Route path="/books" element={<Books books={books}/>} />

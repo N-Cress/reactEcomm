@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom';
+import emptyCart from "../assets/empty_cart.svg";
 
-
-export default function Cart( {cart, changeQuantity, deleteFromCart, checkCart, isCart } ) {
+export default function Cart( {cart, changeQuantity, deleteFromCart,  isCart } ) {
    
     const total = () => {
         let price = 0;
@@ -63,37 +64,46 @@ export default function Cart( {cart, changeQuantity, deleteFromCart, checkCart, 
                                                 ${((book.salePrice || book.originalPrice) * book.quantity).toFixed(2)}
                                                 </div>
                                             </div>
-                                              <div className="total">
-                                              <div className="total__item total__sub-total">
-                                                  <span> Subtotal </span>
-                                                  <span> ${(total() * 0.9).toFixed(2)} </span>
-                                              </div>
-                                              <div className="total__item total__tax">
-                                                  <span> Tax </span>
-                                                  <span> ${(total() * 0.1).toFixed(2)} </span>
-                                              </div>
-                                              <div className="total__item total__price">
-                                                  <span> Total </span>
-                                                  <span> ${total()}</span>
-                                              </div>
-                                              <button className="btn btn__checkout no-cursor"
-                                               onClick={() => alert('not implemented')}>
-                                                 Checkout
-                                              </button>
-                                          </div>
+                                             
                                         </div>
                                         )
                                     })
                                 ) : (
-                                <div className="cart__body">
-                                    <div className="help">
-                                        Hello
-                                    </div>
+                                <div className="cart__empty">
+                                    <img src={emptyCart} alt="" className="cart__empty--img" />
+                                    <h2>You don't have any books in your cart!</h2>
+                                    <Link>
+                                    <button className="btn"> Browse Books </button>
+                                    </Link>
                                 </div>
                                     
                                 )
                             }
-                        
+                        {
+                            cartCheck ? (
+                                <div className="total">
+                                <div className="total__item total__sub-total">
+                                    <span> Subtotal </span>
+                                    <span> ${(total() * 0.9).toFixed(2)} </span>
+                                </div>
+                                <div className="total__item total__tax">
+                                    <span> Tax </span>
+                                    <span> ${(total() * 0.1).toFixed(2)} </span>
+                                </div>
+                                <div className="total__item total__price">
+                                    <span> Total </span>
+                                    <span> ${total().toFixed(2)}</span>
+                                </div>
+                                <button className="btn btn__checkout no-cursor"
+                                 onClick={() => alert('not implemented')}>
+                                   Checkout
+                                </button>
+                            </div>
+                            ) : (
+                                <div className="
+                                "></div>
+                            )
+                        }
                     </div>
                   
                 </div>
